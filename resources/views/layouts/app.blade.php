@@ -32,7 +32,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="{{ asset('css/all.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('img/iconePaw.png') }}">
 </head>
 
 <body>

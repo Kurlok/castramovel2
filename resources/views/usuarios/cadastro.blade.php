@@ -96,16 +96,7 @@
                             </div>
                             <div class="form-row">
 
-                                <div class="form-group col-md-4">
-                                    <label for="cpf">{{ __('CPF') }}</label>
-                                    <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" value="@if(isset($usuario)){{$usuario->cpf}}@else{{old('cpf')}}@endif" required autocomplete="cpf" maxlength="15" autofocus @if(isset($usuario)) disabled @endif>
-                                    @error('cpf')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-12">
                                     <label for="email">E-mail</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="@if(isset($usuario)){{$usuario->email}}@else{{old('email')}}@endif" required autocomplete="email" @if(isset($usuario)) disabled @endif>
                                     @error('email')
@@ -116,26 +107,7 @@
                                 </div>
                             </div>
                             <div class="form-row">
-
-                                <div class="form-group col-md-4">
-                                    <label for="funcao">{{ __('Função') }}</label>
-                                    <input id="funcao" type="text" class="form-control @error('funcao') is-invalid @enderror" name="funcao" maxlength="100" value="@if(isset($usuario)){{$usuario->funcao}}@else{{old('funcao')}}@endif" required autocomplete="funcao" autofocus>
-                                    @error('funcao')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="unidade">Unidade</label>
-
-                                    <select class="form-control" id="unidade" name="unidade">
-                                        <option disabled selected>Unidade</option>
-                                        @foreach($listaUnidades as $unidade)
-                                        <option value="{{$unidade->nome}}">{{$unidade->nome}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                {{--
                                 <div class="form-group col-md-4">
                                     <label for="permissao">Permissão</label>
                                     <select class="form-control @error('permissao') is-invalid @enderror" maxlength="50" required id="permissao" name="permissao">
@@ -146,33 +118,34 @@
                                     @error('permissao')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                </span>
+                                @enderror
                             </div>
-
-                           
-            @if(!isset($usuario))
-            <div class="row">
-                <div class="col">
-
-                    <p class="text-justify small"><span class="text-danger">Atenção:</span> A senha padrão utilizada na criação de um novo usuário é "123456".</p>
+                            --}}
                 </div>
-            </div>
-            @endif
-            <div class="form-group row">
-                <div class="col">
-                    @if(isset($usuario))
-                    <button type="submit" class="btn btn-primary">Alterar</button>
-                    @else
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    @endif
+
+
+                @if(!isset($usuario))
+                <div class="row">
+                    <div class="col">
+
+                        <p class="text-justify small"><span class="text-danger">Atenção:</span> A senha padrão utilizada na criação de um novo usuário é "123456".</p>
+                    </div>
                 </div>
+                @endif
+                <div class="form-group row">
+                    <div class="col">
+                        @if(isset($usuario))
+                        <button type="submit" class="btn btn-primary">Alterar</button>
+                        @else
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        @endif
+                    </div>
+                </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 </div>
 </div>
 </div>
