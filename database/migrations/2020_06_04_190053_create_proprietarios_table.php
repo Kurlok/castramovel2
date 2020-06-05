@@ -19,6 +19,7 @@ class CreateProprietariosTable extends Migration
             $table->string('name');
             $table->string('telefone');
             $table->string('cpf');
+            $table->date('data_nascimento');
         });
     }
 
