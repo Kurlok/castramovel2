@@ -22,7 +22,6 @@ class CreateResidenciasTable extends Migration
             $table->string('responsavel');
             $table->integer('qtd_pessoas');
             $table->integer('qtd_criancas');
-            $table->string('profissoes');
             $table->integer('idade_maior');
             $table->integer('idade_menor');
             $table->string('profissoes');
@@ -85,6 +84,9 @@ class CreateResidenciasTable extends Migration
             $table->boolean('criacao_codornas');
             $table->boolean('criacao_patos_marrecos');
 
+            $table->unsignedBigInteger('proprietario_id')->nullable();
+
+            $table->foreign('proprietario_id')->references('id')->on('proprietarios');
 
 
         });

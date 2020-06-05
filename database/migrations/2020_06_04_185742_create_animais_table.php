@@ -58,7 +58,9 @@ class CreateAnimaisTable extends Migration
             $table->boolean('controle_zoonose');
             $table->boolean('automedicacao');
             $table->boolean('funcao_especifica');
-      
+
+            $table->unsignedBigInteger('proprietario_id')->nullable();
+            $table->unsignedBigInteger('residencia_id')->nullable();
             $table->foreign('proprietario_id')->references('id')->on('proprietarios');
             $table->foreign('residencia_id')->references('id')->on('residencias');
 
