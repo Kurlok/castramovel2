@@ -9,6 +9,11 @@
 @import '../../public/css/personalizacao.css';
 
 //Icons
-@import "node_modules/font-awesome/scss/font-awesome.scss";
-//@import "node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-
+//@import "node_modules/font-awesome/scss/font-awesome";
+//@import 'node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+//@import 'node_modules/@fortawesome/fontawesome-free/css';
+//node_modules\@fortawesome\fontawesome-free\css
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';

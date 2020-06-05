@@ -31,8 +31,8 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome</th>
-                        <th>Unidade</th>
-                        <th>Função</th>
+                        <th>E-mail</th>
+
                         <th class="actions">Ações</th>
                     </tr>
                 </thead>
@@ -42,8 +42,7 @@
                     <tr>
                         <td>{{$usuario->id}}</td>
                         <td>{{$usuario->name}}</td>
-                        <td>{{$usuario->unidade}}</td>
-                        <td>{{$usuario->funcao}}</td>
+                        <td>{{$usuario->email}}</td>
 
                         <td class="actions">
 

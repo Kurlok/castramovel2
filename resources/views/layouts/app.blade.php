@@ -40,10 +40,17 @@
         @auth
         <!-- Sidebar -->
         <div class="bg-info" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center">{{ config('app.name', 'Laravel') }}</div>
+            <div class="sidebar-heading text-center"><i class="fas fa-cat"></i> {{ config('app.name', 'Laravel') }} <i class="fas fa-dog"></i></div>
             <div class="list-group list-group-flush">
-            <a href="{{ route('usuarios') }}" class="list-group-item list-group-item-action bg-info text-white"> <i class="fas fa-users"></i>Usuários</a>
-                {{--
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-clipboard-list"></i> Visitas</a>
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-address-book"></i> Proprietários</a>
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-paw"></i> Animais</a>
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-home"></i> Residências</a>
+            <a href="{{ route('usuarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-users"></i> Usuários</a>
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-chart-bar"></i> Gráficos</a>
+            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-file-export"></i> Relatórios</a>
+            
+            {{--
                 <a href="{{ route('pacientes') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-address-card"></i> Pacientes</a>
                 @if (Auth::user()->permissao == 'Administrador')
                 <a href="{{ route('vacinas') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-syringe"></i> Vacinas</a>
