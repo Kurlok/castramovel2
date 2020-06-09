@@ -11,13 +11,13 @@ $dataAtual = Carbon\Carbon::now()->toDateString();
         </div>
     </div>
     <div class="card">
-        <form method="get" action="relatorios/pacientes/todos" name="formTodas" id="formTodas">
+        <form method="get" action="relatorios/proprietarios/todos" name="formTodas" id="formTodas">
             <div class="card-header bg-success text-white">Todos os dados</div>
             <div class="card-body border-secondary">
                 <div class="form-row">
                     <div class="form-group col-md-10">
                         <select class="form-control" id="comboTodas" name="comboTodas">
-                            <option value="todosPacientes" selected>Todos os pacientes</option>
+                            <option value="todosProprietarios" selected>Todos os proprietarios</option>
                             <option value="todasUnidades">Todas as unidades</option>
                             <option value="todosUsuarios">Todos os usuários</option>
                             <option value="todasVacinas">Todas as vacinas</option>
@@ -31,9 +31,9 @@ $dataAtual = Carbon\Carbon::now()->toDateString();
                 </div>
             </div>
         </form>
-        <div class="card-header bg-success text-white">Pacientes</div>
+        <div class="card-header bg-success text-white">Proprietarios</div>
         <div class="card-body">
-            <form method="get" name="formPacientes" id="formPacientes" action="{{ route('relatorioPacienteNascimento') }}">
+            <form method="get" name="formProprietarios" id="formProprietarios" action="{{ route('relatorioProprietarioNascimento') }}">
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="nascimentoInicial">Data de Nascimento Inicial</label>
@@ -44,8 +44,8 @@ $dataAtual = Carbon\Carbon::now()->toDateString();
                         <input type="date" class="form-control" id="nascimentoFinal" name="nascimentoFinal" max='{{$dataAtual}}'>
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="buttonPacientes" style="visibility: hidden;">Exportação para arquivo</label>
-                        <button type="submit" class="btn btn-primary btn-xs" name="buttonPacientes" id="buttonPacientes">
+                        <label for="buttonProprietarios" style="visibility: hidden;">Exportação para arquivo</label>
+                        <button type="submit" class="btn btn-primary btn-xs" name="buttonProprietarios" id="buttonProprietarios">
                             <i class="far fa-file-excel"></i> Excel
                         </button>
                     </div>
@@ -137,8 +137,8 @@ $dataAtual = Carbon\Carbon::now()->toDateString();
     comboTodas = document.getElementById('comboTodas');
     formTodas = document.getElementById('formTodas');
     comboTodas.onchange = function(e) {
-        if (comboTodas.value == 'todosPacientes') {
-            formTodas.action = "relatorios/pacientes/todos";
+        if (comboTodas.value == 'todosProprietarios') {
+            formTodas.action = "relatorios/proprietarios/todos";
         } else if (comboTodas.value == 'todasUnidades') {
             formTodas.action = "relatorios/unidades/todas";
         } else if (comboTodas.value == 'todosUsuarios') {
