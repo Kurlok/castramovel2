@@ -66,6 +66,14 @@
 @endpush
 
 @extends('layouts.app')
+<?php
+$usuarioLogado = Illuminate\Support\Facades\Auth::user();
+//$dataAtual = Carbon\Carbon::now()->toDateString();
+$dataAtual = Carbon\Carbon::now();
+if (isset($proprietario)) {
+    $idadePaciente = Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diffInDays(Carbon\Carbon::now(), false);
+}
+?>
 
 @section('content')
 <div class="container">
@@ -83,70 +91,59 @@
                             @csrf
 
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="name">{{ __('Nome Completo') }}</label>
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="@if(isset($proprietario)){{$proprietario->name}}@else {{ old('name') }}@endif " maxlength="255" required autocomplete="name" autofocus>
-                                    @error('name')
+                                <div class="form-group col-md-2">
+                                    <label for="id">Código</label>
+                                    <input type="text" class="form-control" name="id" id="id" value="@if(isset($proprietario)){{$proprietario->id}}@endif" disabled>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="idade">Idade</label>
+                                    <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($proprietario)){{Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="nome">Nome completo</label>
+                                    <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome completo" value="@if(isset($proprietario)){{$proprietario->nome}}@else{{old('nome')}}@endif">
+                                    @error('nome')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
                                 </div>
-
-                            </div>
-                            <div class="form-row">
-
-                                <div class="form-group col-md-12">
-                                    <label for="email">E-mail</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="@if(isset($proprietario)){{$proprietario->email}}@else{{old('email')}}@endif" required autocomplete="email" @if(isset($proprietario)) disabled @endif>
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                <div class="form-group col-md-2">
+                                    <label for="sus">Cartão SUS</label>
+                                    <input type="text" class="form-control" name="sus" id="sus" placeholder="000000000000000" maxlength="20" value="@if(isset($proprietario)){{$proprietario->sus}}@else{{old('sus')}}@endif">
                                 </div>
                             </div>
                             <div class="form-row">
-                                {{--
-                                <div class="form-group col-md-4">
-                                    <label for="permissao">Permissão</label>
-                                    <select class="form-control @error('permissao') is-invalid @enderror" maxlength="50" required id="permissao" name="permissao">
-                                        <option value="Administrador" @if(isset($proprietario)) @if($proprietario->permissao == 'Administrador') selected @endif @endif>Administrador</option>
-                                        <option value="Comum" @if(isset($proprietario)) @if($proprietario->permissao == 'Comum') selected @endif @else selected @endif > Comum</option>
-                                        <option value="Visualização" @if(isset($proprietario)) @if($proprietario->permissao == 'Visualização') selected @endif @else selected @endif > Visualização</option>
-                                    </select>
-                                    @error('permissao')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                <div class="form-group col-md-3">
+                                    <label for="data_nascimento">Nascimento</label>
+                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" min="1900-01-01" max='{{$dataAtual}}' value="@if(isset($proprietario)){{$proprietario->data_nascimento}}@else{{old('data_nascimento')}}@endif">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" class="form-control" id="cpf" name="cpf" value="@if(isset($proprietario)){{$proprietario->cpf}}@else{{old('cpf')}}@endif">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="text" class="form-control tel" id="telefone" name="telefone" maxlength="20" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone}}@else{{old('telefone')}}@endif">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="nome">Telefone Alternativo</label>
+                                    <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
+                                </div>
                             </div>
-                            --}}
+                            <div class="form-group row">
+                                <div class="col">
+                                    @if(isset($proprietario))
+                                    <button type="submit" class="btn btn-primary">Alterar</button>
+                                    @else
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </form>
                 </div>
-
-
-                @if(!isset($proprietario))
-                <div class="row">
-                    <div class="col">
-
-                        <p class="text-justify small"><span class="text-danger">Atenção:</span> A senha padrão utilizada na criação de um novo usuário é "123456".</p>
-                    </div>
-                </div>
-                @endif
-                <div class="form-group row">
-                    <div class="col">
-                        @if(isset($proprietario))
-                        <button type="submit" class="btn btn-primary">Alterar</button>
-                        @else
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        @endif
-                    </div>
-                </div>
-                </form>
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 @endsection

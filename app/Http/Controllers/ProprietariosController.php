@@ -56,6 +56,7 @@ class ProprietariosController extends Controller
             $listaProprietarios = Proprietario::where('nome', 'LIKE', '%' . $q . '%')
                 ->orWhere('data_nascimento', 'LIKE', '%' . $dataSql . '%')
                 ->orWhere('sus', 'LIKE', '%' . $q . '%')
+                ->orWhere('cpf', 'LIKE', '%' . $q . '%')
                 ->orWhere('telefone', 'LIKE', '%' . $q . '%')
                 ->orWhere('telefone_alternativo', 'LIKE', '%' . $q . '%')
                 ->paginate(15)->setPath('/proprietarios/busca');
@@ -110,6 +111,7 @@ class ProprietariosController extends Controller
         $proprietario = new Proprietario();
         $proprietario->nome = $request->nome;
         $proprietario->data_nascimento = $request->data_nascimento;
+        $proprietario->cpf = $request->cpf;
         $proprietario->sus = $request->sus;
         $proprietario->telefone = $request->telefone;
         $proprietario->telefone_alternativo = $request->telefone_alternativo;
@@ -124,6 +126,7 @@ class ProprietariosController extends Controller
 
             $proprietario = Proprietario::find($id);
             $proprietario->nome = $request->nome;
+            $proprietario->cpf = $request->cpf;
             $proprietario->data_nascimento = $request->data_nascimento;
             $proprietario->sus = $request->sus;
             $proprietario->telefone = $request->telefone;
