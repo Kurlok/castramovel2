@@ -72,20 +72,20 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-success text-white">{{ __('Usuário') }}</div>
+                <div class="card-header bg-success text-white">{{ __('Proprietário') }}</div>
 
                 <div class="card-body">
-                    @if(isset($usuario))
-                    <form method="POST" action="{{route('alterarUsuario', $usuario->id)}}">
+                    @if(isset($proprietario))
+                    <form method="POST" action="{{route('alterarProprietario', $proprietario->id)}}">
                         @else
-                        <form method="POST" action="{{route('cadastrarUsuario')}}">
+                        <form method="POST" action="{{route('cadastrarProprietario')}}">
                             @endif
                             @csrf
 
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="name">{{ __('Nome Completo') }}</label>
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="@if(isset($usuario)){{$usuario->name}}@else {{ old('name') }}@endif " maxlength="255" required autocomplete="name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="@if(isset($proprietario)){{$proprietario->name}}@else {{ old('name') }}@endif " maxlength="255" required autocomplete="name" autofocus>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -98,7 +98,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="email">E-mail</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="@if(isset($usuario)){{$usuario->email}}@else{{old('email')}}@endif" required autocomplete="email" @if(isset($usuario)) disabled @endif>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="@if(isset($proprietario)){{$proprietario->email}}@else{{old('email')}}@endif" required autocomplete="email" @if(isset($proprietario)) disabled @endif>
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -111,9 +111,9 @@
                                 <div class="form-group col-md-4">
                                     <label for="permissao">Permissão</label>
                                     <select class="form-control @error('permissao') is-invalid @enderror" maxlength="50" required id="permissao" name="permissao">
-                                        <option value="Administrador" @if(isset($usuario)) @if($usuario->permissao == 'Administrador') selected @endif @endif>Administrador</option>
-                                        <option value="Comum" @if(isset($usuario)) @if($usuario->permissao == 'Comum') selected @endif @else selected @endif > Comum</option>
-                                        <option value="Visualização" @if(isset($usuario)) @if($usuario->permissao == 'Visualização') selected @endif @else selected @endif > Visualização</option>
+                                        <option value="Administrador" @if(isset($proprietario)) @if($proprietario->permissao == 'Administrador') selected @endif @endif>Administrador</option>
+                                        <option value="Comum" @if(isset($proprietario)) @if($proprietario->permissao == 'Comum') selected @endif @else selected @endif > Comum</option>
+                                        <option value="Visualização" @if(isset($proprietario)) @if($proprietario->permissao == 'Visualização') selected @endif @else selected @endif > Visualização</option>
                                     </select>
                                     @error('permissao')
                                     <span class="invalid-feedback" role="alert">
@@ -125,7 +125,7 @@
                 </div>
 
 
-                @if(!isset($usuario))
+                @if(!isset($proprietario))
                 <div class="row">
                     <div class="col">
 
@@ -135,7 +135,7 @@
                 @endif
                 <div class="form-group row">
                     <div class="col">
-                        @if(isset($usuario))
+                        @if(isset($proprietario))
                         <button type="submit" class="btn btn-primary">Alterar</button>
                         @else
                         <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -54,7 +54,6 @@ class ProprietariosController extends Controller
         //Busca
         if ($q != "") {
             $listaProprietarios = Proprietario::where('nome', 'LIKE', '%' . $q . '%')
-                ->orWhere('localidade', 'LIKE', '%' . $q . '%')
                 ->orWhere('data_nascimento', 'LIKE', '%' . $dataSql . '%')
                 ->orWhere('sus', 'LIKE', '%' . $q . '%')
                 ->orWhere('telefone', 'LIKE', '%' . $q . '%')
