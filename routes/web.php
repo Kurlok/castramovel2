@@ -34,6 +34,15 @@ Route::middleware(['auth', 'SenhaRedefinida'])->group(function () {
     Route::post('/proprietarios/cadastro/alterar/{id}', 'ProprietariosController@alterarProprietario')->name('alterarProprietario');
     Route::any('/proprietarios/busca', 'ProprietariosController@buscaProprietario')->name('proprietariosBusca');
 
+    Route::get('/residencias', 'ResidenciasController@index')->name('residencias');
+    Route::get('/residencias/cadastro', 'ResidenciasController@telaCadastroResidencia')->name('telaCadastroResidencia');
+    Route::get('/residencias/cadastro/{id}', 'ResidenciasController@getResidencia')->name('residenciaId');
+    Route::post('/residencias/delete/{id}', 'ResidenciasController@deletarResidencia')->name('deletarResidencia');
+    Route::post('/residencias/cadastro/novo', 'ResidenciasController@cadastrarResidencia')->name('cadastrarResidencia');
+    Route::post('/residencias/cadastro/alterar/{id}', 'ResidenciasController@alterarResidencia')->name('alterarResidencia');
+    Route::any('/residencias/busca', 'ResidenciaController@buscaResidencia')->name('residenciasBusca');
+
+
 });
 
 Route::middleware(['auth'])->group(function () {

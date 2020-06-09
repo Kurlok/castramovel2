@@ -26,8 +26,7 @@ class CreateResidenciasTable extends Migration
             $table->integer('idade_menor');
             $table->string('profissoes');
             $table->string('alfabetizados');
-            $table->string('renda_familiar');
-            $table->boolean('programa_renda');
+ 
             $table->string('familiar_deficiencia');
             $table->string('material');
             $table->boolean('barreira');

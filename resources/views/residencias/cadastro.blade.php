@@ -131,28 +131,6 @@ if (isset($proprietario)) {
                                     <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                <label for="renda_familiar[]">Renda Familiar</label>
-
-                                    <select class="form-control" id="renda_familiar[]" name="renda_familiar[]">
-                                        <option value=''>Selecione</option>
-                                        <option value="0 a 2 S.M.">Até 2 salários mínimos</option>
-                                        <option value="2 a 5 S.M.">De 0 a 2 salários mínimos</option>
-                                        <option value="5 S.M ou mais">De 2 a 5 salários mínimos</option>
-
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="programa_renda">Programa de Renda</label>
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="programa_renda" name="programa_renda" @if(isset($proprietario)) @if($proprietario->programa_renda == 1) checked @endif @elseif(old('programa_renda')==1 ) checked @endif>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
                             <div class="form-group row">
                                 <div class="col">
                                     @if(isset($proprietario))

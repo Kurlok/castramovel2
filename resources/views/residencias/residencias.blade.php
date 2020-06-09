@@ -4,10 +4,10 @@
 <div class="container">
     <div id="top" class="row">
         <div class="col-md-3">
-            <h2><i class="fas fa-address-book"></i> Proprietários</h2>
+            <h2><i class="fas fa-home"></i> Residências</h2>
         </div>
         <div class="col-md-6 ">
-            <form action="/proprietarios/busca" method="POST" role="search">
+            <form action="/residencias/busca" method="POST" role="search">
                 {{ csrf_field() }}
                 <div class="input-group">
                     <input name="q" class="form-control" id="search" type="text" placeholder="Pesquisar">
@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="col-md-3 ">
-            <a href="{{ route('telaCadastroProprietario') }}" class="btn btn-primary pull-right h2"><i class="fas fa-plus"></i> Novo Proprietário</a>
+            <a href="{{ route('telaCadastroResidencia') }}" class="btn btn-primary pull-right h2"><i class="fas fa-plus"></i> Novo Residência</a>
         </div>
     </div>
 
@@ -35,8 +35,6 @@
                         <th>Data de Nascimento</th>
                         <th>Telefone</th>
                         <th>Telefone 2</th>
-                        <th>Renda Familiar</th>
-
                         <th class="actions">Ações</th>
                     </tr>
                 </thead>
@@ -50,7 +48,6 @@
                         <td>{{date('d/m/Y', strtotime($proprietario->data_nascimento))}}</td>
                         <td>{{$proprietario->telefone}}</td>
                         <td>{{$proprietario->telefone_alternativo}}</td>
-                        <td>{{$proprietario->renda_familiar}}</td>
 
                         <td class="actions">
 

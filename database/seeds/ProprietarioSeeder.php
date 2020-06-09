@@ -19,6 +19,8 @@ class ProprietarioSeeder extends Seeder
                 'cpf' => '05206843970',
                 'telefone' => '(42) 93242-4213',
                 'telefone_alternativo' => '(41) 99999-9999',
+                'renda_familiar' => 'Até 2',
+                'programa_renda' => true
             ]
         );
     }

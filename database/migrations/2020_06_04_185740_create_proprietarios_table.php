@@ -22,6 +22,8 @@ class CreateProprietariosTable extends Migration
             $table->string('telefone_alternativo')->nullable();
             $table->string('cpf');
             $table->date('data_nascimento');
+            $table->string('renda_familiar');
+            $table->boolean('programa_renda');
         });
     }
 

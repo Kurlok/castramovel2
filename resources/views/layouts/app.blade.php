@@ -45,23 +45,10 @@
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-clipboard-list"></i> Visitas</a>
             <a href="{{ route('proprietarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-address-book"></i> Proprietários</a>
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-paw"></i> Animais</a>
-            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-home"></i> Residências</a>
+            <a href="{{ route('residencias') }} " class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-home"></i> Residências</a>
             <a href="{{ route('usuarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-users"></i> Usuários</a>
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-chart-bar"></i> Gráficos</a>
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-file-export"></i> Relatórios</a>
-            
-            {{--
-                <a href="{{ route('proprietarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-address-card"></i> Proprietarios</a>
-                @if (Auth::user()->permissao == 'Administrador')
-                <a href="{{ route('vacinas') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-syringe"></i> Vacinas</a>
-                @if (Route::has('unidades'))
-                <a href="{{ route('unidades') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-hospital"></i> Unidades</a>
-                @endif
-                <a href="{{ route('usuarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-users"></i> Usuários</a>
-                <a href="{{ route('graficos') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-chart-bar"></i> Gráficos</a>
-                <a href="{{ route('relatorios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-file-export"></i> Relatórios</a>
-                @endif
-                --}}
 
             </div>
         </div>
