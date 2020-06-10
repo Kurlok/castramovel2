@@ -35,7 +35,6 @@
                         <th>Data de Nascimento</th>
                         <th>Telefone</th>
                         <th>Telefone 2</th>
-                        <th>Renda Familiar</th>
 
                         <th class="actions">Ações</th>
                     </tr>
@@ -50,7 +49,6 @@
                         <td>{{date('d/m/Y', strtotime($proprietario->data_nascimento))}}</td>
                         <td>{{$proprietario->telefone}}</td>
                         <td>{{$proprietario->telefone_alternativo}}</td>
-                        <td>{{$proprietario->renda_familiar}}</td>
 
                         <td class="actions">
 

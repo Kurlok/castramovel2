@@ -103,10 +103,9 @@ class ProprietariosController extends Controller
         ]);
 
         //Trabalhando com os checkboxes
-        // if ($request->obito == 'on') $obito = 'Sim';
-        // else  $obito = 'Não';
-        // if ($request->gestante == 'on') $gestante = 'Sim';
-        // else  $gestante = 'Não';
+        if ($request->programa_renda == 'on') $programa_renda = 1;
+        else  $programa_renda = 0;
+
 
         $proprietario = new Proprietario();
         $proprietario->nome = $request->nome;
@@ -115,6 +114,9 @@ class ProprietariosController extends Controller
         $proprietario->sus = $request->sus;
         $proprietario->telefone = $request->telefone;
         $proprietario->telefone_alternativo = $request->telefone_alternativo;
+        $proprietario->renda_familiar = $request->renda_familiar;
+        $proprietario->programa_renda = $programa_renda;
+
         $proprietario->save();
 
         return redirect()->route('proprietarios');
@@ -123,6 +125,9 @@ class ProprietariosController extends Controller
     public function alterarProprietario(Request $request, int $id)
     {
         try {
+            //Trabalhando com os checkboxes
+            if ($request->programa_renda == 'on') $programa_renda = 1;
+            else  $programa_renda = 0;
 
             $proprietario = Proprietario::find($id);
             $proprietario->nome = $request->nome;
@@ -131,6 +136,9 @@ class ProprietariosController extends Controller
             $proprietario->sus = $request->sus;
             $proprietario->telefone = $request->telefone;
             $proprietario->telefone_alternativo = $request->telefone_alternativo;
+            $proprietario->renda_familiar = $request->renda_familiar;
+            $proprietario->programa_renda = $programa_renda;
+
             $proprietario->save();
             return back()->with('mensagemSucesso', "Alteração realizada com sucesso.");
         } catch (Exception $ex) {
@@ -145,6 +153,4 @@ class ProprietariosController extends Controller
 
         return redirect()->route('proprietarios');
     }
-
-
 }

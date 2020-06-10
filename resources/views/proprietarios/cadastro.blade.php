@@ -76,9 +76,41 @@ if (isset($proprietario)) {
 ?>
 
 @section('content')
+@section('content')
 <div class="container">
+    @if(session()->has('mensagemSucesso'))
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <div class=" alert alert-success">
+                {{ session()->get('mensagemSucesso') }}
+            </div>
+        </div>
+    </div>
+    @endif
+    @if (session()->has('mensagemErro'))
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class=" alert alert-danger">
+                {{ session()->get('mensagemErro') }}
+            </div>
+        </div>
+    </div>
+    @endif
+    @if ($errors->any())
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class=" alert alert-danger">
+                Houve um erro, por favor confira se preencheu todos os dados corretamente.
+            </div>
+        </div>
+    </div>
+    @endif
+<div class="container">
+    
+    <div class="row justify-content-center">
+        
+        <div class="col-md-12">
+            
             <div class="card">
                 <div class="card-header bg-success text-white">{{ __('Proprietário') }}</div>
 
@@ -133,20 +165,19 @@ if (isset($proprietario)) {
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                <label for="renda_familiar[]">Renda Familiar</label>
+                                <label for="renda_familiar">Renda Familiar</label>
 
-                                    <select class="form-control" id="renda_familiar[]" name="renda_familiar[]">
-                                        <option value=''>Selecione</option>
-                                        <option value="0 a 2 S.M.">Até 2 salários mínimos</option>
-                                        <option value="2 a 5 S.M.">De 0 a 2 salários mínimos</option>
-                                        <option value="5 S.M ou mais">De 2 a 5 salários mínimos</option>
-
+                                    <select class="form-control" id="renda_familiar" name="renda_familiar">
+                                        <option value='' disabled>Selecione</option>
+                                        <option value="0 a 2 S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "0 a 2 S.M.") selected @endif @endif>Até 2 salários mínimos</option>
+                                        <option value="2 a 5 S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "2 a 5 S.M.") selected @endif @endif>De 2 a 5 salários mínimos</option>
+                                        <option value="5 ou mais S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "5 ou mais S.M.") selected @endif @endif>Acima de 5 salários mínimos</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-2 text-center">
                                     <label for="programa_renda">Programa de Renda</label>
-                                    <div class="form-group">
-                                        <div class="form-check">
+                                    <div class="form-group align-items-center">
+                                        <div class="form-check align-items-center">
                                             <input class="form-check-input" type="checkbox" id="programa_renda" name="programa_renda" @if(isset($proprietario)) @if($proprietario->programa_renda == 1) checked @endif @elseif(old('programa_renda')==1 ) checked @endif>
                                         </div>
                                     </div>
