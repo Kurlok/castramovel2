@@ -25,4 +25,12 @@ class ResidenciasController extends Controller
             ],
         );
     }
+
+    public function telaCadastroResidencia()
+    {
+        return view(
+            'residencias/cadastro'
+        );
+    }
+
 }

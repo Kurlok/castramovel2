@@ -70,8 +70,8 @@
 $usuarioLogado = Illuminate\Support\Facades\Auth::user();
 //$dataAtual = Carbon\Carbon::now()->toDateString();
 $dataAtual = Carbon\Carbon::now();
-if (isset($proprietario)) {
-    $idadePaciente = Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diffInDays(Carbon\Carbon::now(), false);
+if (isset($residencia)) {
+    $idadePaciente = Carbon\Carbon::createFromDate($residencia->data_nascimento)->diffInDays(Carbon\Carbon::now(), false);
 }
 ?>
 
@@ -80,28 +80,28 @@ if (isset($proprietario)) {
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-success text-white">{{ __('Proprietário') }}</div>
+                <div class="card-header bg-success text-white">{{ __('Residência') }}</div>
 
                 <div class="card-body">
-                    @if(isset($proprietario))
-                    <form method="POST" action="{{route('alterarProprietario', $proprietario->id)}}">
+                    @if(isset($residencia))
+                    <form method="POST" action="{{route('alterarResidencia', $residencia->id)}}">
                         @else
-                        <form method="POST" action="{{route('cadastrarProprietario')}}">
+                        <form method="POST" action="{{route('cadastrarResidencia')}}">
                             @endif
                             @csrf
 
                             <div class="form-row">
                                 <div class="form-group col-md-2">
                                     <label for="id">Código</label>
-                                    <input type="text" class="form-control" name="id" id="id" value="@if(isset($proprietario)){{$proprietario->id}}@endif" disabled>
+                                    <input type="text" class="form-control" name="id" id="id" value="@if(isset($residencia)){{$residencia->id}}@endif" disabled>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="idade">Idade</label>
-                                    <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($proprietario)){{Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
+                                    <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($residencia)){{Carbon\Carbon::createFromDate($residencia->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="nome">Nome completo</label>
-                                    <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome completo" value="@if(isset($proprietario)){{$proprietario->nome}}@else{{old('nome')}}@endif">
+                                    <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome completo" value="@if(isset($residencia)){{$residencia->nome}}@else{{old('nome')}}@endif">
                                     @error('nome')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -110,30 +110,30 @@ if (isset($proprietario)) {
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="sus">Cartão SUS</label>
-                                    <input type="text" class="form-control" name="sus" id="sus" placeholder="000000000000000" maxlength="20" value="@if(isset($proprietario)){{$proprietario->sus}}@else{{old('sus')}}@endif">
+                                    <input type="text" class="form-control" name="sus" id="sus" placeholder="000000000000000" maxlength="20" value="@if(isset($residencia)){{$residencia->sus}}@else{{old('sus')}}@endif">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="data_nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" min="1900-01-01" max='{{$dataAtual}}' value="@if(isset($proprietario)){{$proprietario->data_nascimento}}@else{{old('data_nascimento')}}@endif">
+                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" min="1900-01-01" max='{{$dataAtual}}' value="@if(isset($residencia)){{$residencia->data_nascimento}}@else{{old('data_nascimento')}}@endif">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" name="cpf" value="@if(isset($proprietario)){{$proprietario->cpf}}@else{{old('cpf')}}@endif">
+                                    <input type="text" class="form-control" id="cpf" name="cpf" value="@if(isset($residencia)){{$residencia->cpf}}@else{{old('cpf')}}@endif">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control tel" id="telefone" name="telefone" maxlength="20" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone}}@else{{old('telefone')}}@endif">
+                                    <input type="text" class="form-control tel" id="telefone" name="telefone" maxlength="20" placeholder="(00) 00000-0000" value="@if(isset($residencia)){{$residencia->telefone}}@else{{old('telefone')}}@endif">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="nome">Telefone Alternativo</label>
-                                    <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
+                                    <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($residencia)){{$residencia->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">
-                                    @if(isset($proprietario))
+                                    @if(isset($residencia))
                                     <button type="submit" class="btn btn-primary">Alterar</button>
                                     @else
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
