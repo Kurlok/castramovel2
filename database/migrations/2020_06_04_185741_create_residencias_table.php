@@ -83,9 +83,9 @@ class CreateResidenciasTable extends Migration
             $table->boolean('criacao_codornas');
             $table->boolean('criacao_patos_marrecos');
 
-            $table->unsignedBigInteger('proprietario_id')->nullable();
+        //    $table->unsignedBigInteger('proprietario_id')->nullable();
 
-            $table->foreign('proprietario_id')->references('id')->on('proprietarios');
+         //   $table->foreign('proprietario_id')->references('id')->on('proprietarios');
 
 
         });

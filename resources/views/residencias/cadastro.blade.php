@@ -532,14 +532,139 @@ if (isset($residencia)) {
                             </div>
                         </div>
                         <div class="form-group col-md-3 text-center">
-                            <label for="condicoes_carrapatos">Infertação de carrapatos</label>
+                            <label for="condicoes_carrapatos">Infestação de carrapatos</label>
                             <div class="form-group">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="condicoes_carrapatos" name="condicoes_carrapatos" @if(isset($residencia)) @if($residencia->condicoes_mato_alto == 1) checked @endif @elseif(old('condicoes_carrapatos')==1 ) checked @endif>
                                 </div>
                             </div>
                         </div>
-
+                    </div>
+                </div>
+                <div class="card-header bg-success text-white">{{ __('Fonte de água para consumo') }}</div>
+                <div class="card-body">
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_rede_publica">Rede pública (torneira)</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_rede_publica" name="fonte_agua_rede_publica" @if(isset($residencia)) @if($residencia->fonte_agua_rede_publica == 1) checked @endif @elseif(old('fonte_agua_rede_publica')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_filtrada">Área filtrada</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_filtrada" name="fonte_agua_filtrada" @if(isset($residencia)) @if($residencia->fonte_agua_filtrada == 1) checked @endif @elseif(old('fonte_agua_filtrada')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_fervida">Água fervida</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_fervida" name="fonte_agua_fervida" @if(isset($residencia)) @if($residencia->fonte_agua_fervida == 1) checked @endif @elseif(old('fonte_agua_fervida')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_mineral">Água mineral</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_mineral" name="fonte_agua_mineral" @if(isset($residencia)) @if($residencia->fonte_agua_mineral == 1) checked @endif @elseif(old('fonte_agua_mineral')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_poco">Água de poço</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_poco" name="fonte_agua_poco" @if(isset($residencia)) @if($residencia->fonte_agua_poco == 1) checked @endif @elseif(old('fonte_agua_poco')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_chuva">Água da chuva</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_chuva" name="fonte_agua_chuva" @if(isset($residencia)) @if($residencia->fonte_agua_chuva == 1) checked @endif @elseif(old('fonte_agua_chuva')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="fonte_agua_rio">Água do rio</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fonte_agua_rio" name="fonte_agua_rio" @if(isset($residencia)) @if($residencia->fonte_agua_rio == 1) checked @endif @elseif(old('fonte_agua_rio')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header bg-success text-white">{{ __('Criação de animais de produção') }}</div>
+                <div class="card-body">
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_frango_corte">Frango de corte</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_frango_corte" name="criacao_frango_corte" @if(isset($residencia)) @if($residencia->criacao_frango_corte == 1) checked @endif @elseif(old('criacao_frango_corte')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_galinha_poedeira">Criação de galinha poedeira</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_galinha_poedeira" name="criacao_galinha_poedeira" @if(isset($residencia)) @if($residencia->criacao_galinha_poedeira == 1) checked @endif @elseif(old('criacao_galinha_poedeira')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_bovino_corte">Criação de bovino de corte</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_bovino_corte" name="criacao_bovino_corte" @if(isset($residencia)) @if($residencia->criacao_bovino_corte == 1) checked @endif @elseif(old('criacao_bovino_corte')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_bovino_leite">Criação de bovino de leite</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_bovino_leite" name="criacao_bovino_leite" @if(isset($residencia)) @if($residencia->criacao_bovino_leite == 1) checked @endif @elseif(old('criacao_bovino_leite')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row">
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_ovinos_caprinos">Criação de ovinos/caprinos</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_ovinos_caprinos" name="criacao_ovinos_caprinos" @if(isset($residencia)) @if($residencia->criacao_ovinos_caprinos == 1) checked @endif @elseif(old('criacao_ovinos_caprinos')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_codornas">Criação de codornas</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_codornas" name="criacao_codornas" @if(isset($residencia)) @if($residencia->criacao_codornas == 1) checked @endif @elseif(old('criacao_codornas')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="criacao_patos_marrecos">Criação de patos/marrecos</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="criacao_patos_marrecos" name="criacao_patos_marrecos" @if(isset($residencia)) @if($residencia->criacao_patos_marrecos == 1) checked @endif @elseif(old('criacao_patos_marrecos')==1 ) checked @endif>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group row">
                         <div class="col">
