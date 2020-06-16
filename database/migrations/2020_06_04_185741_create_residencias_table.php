@@ -20,19 +20,19 @@ class CreateResidenciasTable extends Migration
             $table->string('entrevistador');
             $table->string('classificacao_area');
             $table->string('responsavel');
+            $table->string('logradouro');
+            $table->string('bairro');
+            $table->string('numero');
+            $table->string('complemento');
             $table->integer('qtd_pessoas');
             $table->integer('qtd_criancas');
             $table->integer('idade_maior');
             $table->integer('idade_menor');
             $table->string('profissoes');
             $table->string('alfabetizados');
- 
             $table->string('familiar_deficiencia');
             $table->string('material');
             $table->boolean('barreira');
-            $table->string('rua');
-            $table->string('bairro');
-            $table->string('numero');
             $table->boolean('entorno_via_pavimentada');
             $table->boolean('entorno_alagavel');
             $table->boolean('entorno_baldio_residuos');
