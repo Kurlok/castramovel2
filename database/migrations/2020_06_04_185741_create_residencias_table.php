@@ -16,14 +16,13 @@ class CreateResidenciasTable extends Migration
         Schema::create('residencias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('data_visita');
-            $table->string('entrevistador');
-            $table->string('classificacao_area');
-            $table->string('responsavel');
             $table->string('logradouro');
             $table->string('bairro');
             $table->string('numero');
             $table->string('complemento');
+            
+            $table->string('responsavel');
+            $table->string('classificacao_area');
             $table->integer('qtd_pessoas');
             $table->integer('qtd_criancas');
             $table->integer('idade_maior');

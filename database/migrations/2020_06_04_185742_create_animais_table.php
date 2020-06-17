@@ -19,7 +19,7 @@ class CreateAnimaisTable extends Migration
             $table->string('nome');
             $table->string('especie');
             $table->string('genero');
-            $table->integer('idade');
+            $table->integer('nascimento');
             $table->float('peso');
             $table->string('porte');
             $table->text('outras_informacoes')->nullable();

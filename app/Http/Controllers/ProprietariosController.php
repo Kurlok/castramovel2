@@ -100,6 +100,7 @@ class ProprietariosController extends Controller
     {
         $validatedData = $request->validate([
             'nome' => ['required', 'string', 'max:255'],
+            'cpf' => 'required|string|min:14|max:14|unique:proprietarios',
         ]);
 
         //Trabalhando com os checkboxes
