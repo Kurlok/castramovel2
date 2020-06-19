@@ -42,6 +42,14 @@ Route::middleware(['auth', 'SenhaRedefinida'])->group(function () {
     Route::post('/residencias/cadastro/alterar/{id}', 'ResidenciasController@alterarResidencia')->name('alterarResidencia');
     Route::any('/residencias/busca', 'ResidenciaController@buscaResidencia')->name('residenciasBusca');
 
+    Route::get('/animais', 'AnimaisController@index')->name('animais');
+    Route::get('/animais/cadastro', 'AnimaisController@telaCadastroAnimal')->name('telaCadastroAnimal');
+    Route::get('/animais/cadastro/{id}', 'AnimaisController@getAnimal')->name('animalId');
+    Route::post('/animais/delete/{id}', 'AnimaisController@deletarAnimal')->name('deletarAnimal');
+    Route::post('/animais/cadastro/novo', 'AnimaisController@cadastrarAnimal')->name('cadastrarAnimal');
+    Route::post('/animais/cadastro/alterar/{id}', 'AnimaisController@alterarAnimal')->name('alterarAnimal');
+    Route::any('/animais/busca', 'AnimaisController@buscaAnimal')->name('animaisBusca');
+
 
 });
 

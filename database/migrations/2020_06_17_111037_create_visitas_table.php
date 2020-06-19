@@ -80,14 +80,12 @@ class CreateVisitasTable extends Migration
             $table->boolean('residencia_criacao_codornas');
             $table->boolean('residencia_criacao_patos_marrecos');
 
-            $table->float('animal_peso');
+            $table->float('animal_peso')->nullable();
             $table->string('animal_porte');
-            $table->text('animal_outras_informacoes')->nullable();
-            $table->string('animal_fonte_agua');
-            $table->string('animal_alimentacao');
+            $table->string('animal_fonte_agua')->nullable();
+            $table->string('animal_alimentacao')->nullable();
             $table->boolean('animal_acesso_supervisionado_rua');
             $table->text('animal_historico_viagens')->nullable();
-            $table->string('animal_cidade_natal')->nullable();
             $table->string('animal_animais_predados')->nullable();
             $table->boolean('animal_sinais_agressao_fisica');
             $table->boolean('animal_alimentacao_inadequada');
@@ -118,7 +116,6 @@ class CreateVisitasTable extends Migration
             $table->boolean('animal_controle_zoonose');
             $table->boolean('animal_automedicacao');
             $table->boolean('animal_funcao_especifica');
-
 
         });
     }

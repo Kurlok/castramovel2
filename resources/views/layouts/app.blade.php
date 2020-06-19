@@ -44,8 +44,8 @@
             <div class="list-group list-group-flush">
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-clipboard-list"></i> Visitas</a>
             <a href="{{ route('proprietarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-address-book"></i> Proprietários</a>
-            <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-paw"></i> Animais</a>
-            <a href="{{ route('residencias') }} " class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-home"></i> Residências</a>
+            <a href="{{ route('animais') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-paw"></i> Animais</a>
+            <a href="{{ route('residencias') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-home"></i> Residências</a>
             <a href="{{ route('usuarios') }}" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-users"></i> Usuários</a>
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-chart-bar"></i> Gráficos</a>
             <a href="" class="list-group-item list-group-item-action bg-info text-white"><i class="fas fa-file-export"></i> Relatórios</a>
