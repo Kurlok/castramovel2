@@ -17,7 +17,6 @@ class CreateVisitasTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('entrevistador');
-            $table->date('data_nascimento');
 
             $table->string('residencia_responsavel');
             $table->string('residencia_classificacao_area');

@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="col-md-3 ">
-            <a href="{{ route('telaCadastroAnimal') }}" class="btn btn-primary pull-right h2"><i class="fas fa-plus"></i> Novo Proprietário</a>
+            <a href="{{ route('telaCadastroAnimal') }}" class="btn btn-primary pull-right h2"><i class="fas fa-plus"></i> Novo Animal</a>
         </div>
     </div>
 
@@ -31,11 +31,10 @@
                     <tr>
                         <th>Código</th>
                         <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Data de Nascimento</th>
-                        <th>Telefone</th>
-                        <th>Telefone 2</th>
-
+                        <th>Espécie</th>
+                        <th>Gênero</th>
+                        <th>Residência</th>
+                        <th>Proprietário</th>
                         <th class="actions">Ações</th>
                     </tr>
                 </thead>
@@ -45,10 +44,9 @@
                     <tr>
                         <td>{{$animal->id}}</td>
                         <td>{{$animal->nome}}</td>
-                        <td>{{$animal->cpf}}</td>
-                        <td>{{date('d/m/Y', strtotime($animal->data_nascimento))}}</td>
-                        <td>{{$animal->telefone}}</td>
-                        <td>{{$animal->telefone_alternativo}}</td>
+                        <td>{{$animal->especie}}</td>
+                        <td>{{$animal->genero}}</td>
+
 
                         <td class="actions">
 

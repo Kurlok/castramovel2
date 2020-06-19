@@ -70,8 +70,8 @@
 $usuarioLogado = Illuminate\Support\Facades\Auth::user();
 //$dataAtual = Carbon\Carbon::now()->toDateString();
 $dataAtual = Carbon\Carbon::now();
-if (isset($proprietario)) {
-    $idadePaciente = Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diffInDays(Carbon\Carbon::now(), false);
+if (isset($animal)) {
+    $idadePaciente = Carbon\Carbon::createFromDate($animal->data_nascimento)->diffInDays(Carbon\Carbon::now(), false);
 }
 ?>
 
@@ -105,98 +105,113 @@ if (isset($proprietario)) {
         </div>
     </div>
     @endif
-<div class="container">
-    
-    <div class="row justify-content-center">
-        
-        <div class="col-md-12">
-            
-            <div class="card">
-                <div class="card-header bg-success text-white">{{ __('Proprietário') }}</div>
+    <div class="container">
 
-                <div class="card-body">
-                    @if(isset($proprietario))
-                    <form method="POST" action="{{route('alterarProprietario', $proprietario->id)}}">
-                        @else
-                        <form method="POST" action="{{route('cadastrarProprietario')}}">
-                            @endif
-                            @csrf
+        <div class="row justify-content-center">
 
-                            <div class="form-row">
-                                <div class="form-group col-md-2">
-                                    <label for="id">Código</label>
-                                    <input type="text" class="form-control" name="id" id="id" value="@if(isset($proprietario)){{$proprietario->id}}@endif" disabled>
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="idade">Idade</label>
-                                    <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($proprietario)){{Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="nome">Nome completo</label>
-                                    <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome completo" value="@if(isset($proprietario)){{$proprietario->nome}}@else{{old('nome')}}@endif">
-                                    @error('nome')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="sus">Cartão SUS</label>
-                                    <input type="text" class="form-control" name="sus" id="sus" placeholder="000000000000000" maxlength="20" value="@if(isset($proprietario)){{$proprietario->sus}}@else{{old('sus')}}@endif">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="data_nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" min="1900-01-01" max='{{$dataAtual}}' value="@if(isset($proprietario)){{$proprietario->data_nascimento}}@else{{old('data_nascimento')}}@endif">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control" id="cpf" name="cpf" value="@if(isset($proprietario)){{$proprietario->cpf}}@else{{old('cpf')}}@endif">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control tel" id="telefone" name="telefone" maxlength="20" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone}}@else{{old('telefone')}}@endif">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="nome">Telefone Alternativo</label>
-                                    <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                <label for="renda_familiar">Renda Familiar</label>
+            <div class="col-md-12">
 
-                                    <select class="form-control" id="renda_familiar" name="renda_familiar">
-                                        <option value='' disabled>Selecione</option>
-                                        <option value="0 a 2 S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "0 a 2 S.M.") selected @endif @endif>Até 2 salários mínimos</option>
-                                        <option value="2 a 5 S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "2 a 5 S.M.") selected @endif @endif>De 2 a 5 salários mínimos</option>
-                                        <option value="5 ou mais S.M." @if(isset($proprietario)) @if($proprietario->renda_familiar == "5 ou mais S.M.") selected @endif @endif>Acima de 5 salários mínimos</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-2 text-center">
-                                    <label for="programa_renda">Programa de Renda</label>
-                                    <div class="form-group align-items-center">
-                                        <div class="form-check align-items-center">
-                                            <input class="form-check-input" type="checkbox" id="programa_renda" name="programa_renda" @if(isset($proprietario)) @if($proprietario->programa_renda == 1) checked @endif @elseif(old('programa_renda')==1 ) checked @endif>
+                <div class="card">
+                    <div class="card-header bg-success text-white">{{ __('Animal') }}</div>
+
+                    <div class="card-body">
+                        @if(isset($animal))
+                        <form method="POST" action="{{route('alterarAnimal', $animal->id)}}">
+                            @else
+                            <form method="POST" action="{{route('cadastrarAnimal')}}">
+                                @endif
+                                @csrf
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="id">Código</label>
+                                        <input type="text" class="form-control" name="id" id="id" value="@if(isset($animal)){{$animal->id}}@endif" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="idade">Idade</label>
+                                        <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($animal)){{Carbon\Carbon::createFromDate($animal->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome" value="@if(isset($animal)){{$animal->nome}}@else{{old('nome')}}@endif">
+                                        @error('nome')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="especie">Espécie</label>
+                                        <div class="form-group">
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" required name="especie" id="canino" value="Canino" @if(isset($animal)) @if($animal->especie ==='Canino') checked @endif @elseif(old('especie')=='Canino') checked @endif>
+                                                <label class="form-check-label" for="canino">Canino</label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" name="especie" id="felino" value="Felino" @if(isset($animal)) @if($animal->especie ==='Felino') checked @endif @elseif(old('especie')=='Felino') checked @endif>
+                                                <label class="form-check-label" for="felino">Felino</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="genero">Gênero</label>
+                                        <div class="form-group">
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" required name="genero" id="macho" value="Macho" @if(isset($animal)) @if($animal->genero ==='Macho') checked @endif @elseif(old('genero')=='Macho') checked @endif>
+                                                <label class="form-check-label" for="macho">Macho</label>
+                                            </div>
+                                            <div class="form-check-inline">
+                                                <input class="form-check-input" type="radio" name="genero" id="femea" value="Fêmea" @if(isset($animal)) @if($animal->genero ==='Femea') checked @endif @elseif(old('genero')=='Fêmea') checked @endif>
+                                                <label class="form-check-label" for="femea">Fêmea</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="form-group row">
-                                <div class="col">
-                                    @if(isset($proprietario))
-                                    <button type="submit" class="btn btn-primary">Alterar</button>
-                                    @else
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
-                                    @endif
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="data_nascimento">Nascimento</label>
+                                        <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" min="1900-01-01" max='{{$dataAtual}}' value="@if(isset($animal)){{$animal->data_nascimento}}@else{{old('data_nascimento')}}@endif">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="cidade_natal">Cidade Natal</label>
+                                        <input type="text" class="form-control" id="cidade_natal" name="cidade_natal" value="@if(isset($animal)){{$animal->cidade_natal}}@else{{old('cidade_natal')}}@endif">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="viagens">Viagens</label>
+                                        <input type="text" class="form-control" id="viagens" name="viagens" value="@if(isset($animal)){{$animal->telefone}}@else{{old('telefone')}}@endif">
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                                <div class="form-group">
+                                    <label for="outras_informacoes">Outras informações</label>
+                                    <textarea class="form-control" id="outras_informacoes" name="outras_informacoes" maxlength="65000" rows="4">@if(isset($animal)){{$animal->outras_informacoes}}@else{{old('outras_informacoes')}}@endif</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="proprietario">Proprietário</label>
+                                    <select class="form-control" id="proprietario" name="proprietario">
+                                        <option value='' disabled>Selecione</option>
+                                        <option value="Sem proprietário" @if(isset($animal)) @if($animal->proprietario_id == NULL) selected @endif @endif>Sem proprietário</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="residencia">Residência</label>
+                                    <select class="form-control" id="residencia" name="residencia">
+                                        <option value='' disabled>Selecione</option>
+                                        <option value="Sem domicílio" @if(isset($animal)) @if($animal->residencia_id == NULL) selected @endif @endif>Sem domicílio</option>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col">
+                                        @if(isset($animal))
+                                        <button type="submit" class="btn btn-primary">Alterar</button>
+                                        @else
+                                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
