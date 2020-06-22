@@ -19,7 +19,7 @@ class CreateAnimaisTable extends Migration
             $table->string('nome');
             $table->string('especie');
             $table->string('genero');
-            $table->integer('nascimento');
+            $table->date('data_nascimento');
             $table->string('cidade_natal')->nullable();
             $table->text('historico_viagens')->nullable();
             $table->text('outras_informacoes')->nullable();

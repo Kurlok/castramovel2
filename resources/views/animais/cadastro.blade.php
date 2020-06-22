@@ -177,8 +177,8 @@ if (isset($animal)) {
                                         <input type="text" class="form-control" id="cidade_natal" name="cidade_natal" value="@if(isset($animal)){{$animal->cidade_natal}}@else{{old('cidade_natal')}}@endif">
                                     </div>
                                     <div class="form-group col-md-8">
-                                        <label for="viagens">Viagens</label>
-                                        <input type="text" class="form-control" id="viagens" name="viagens" value="@if(isset($animal)){{$animal->telefone}}@else{{old('telefone')}}@endif">
+                                        <label for="historico_viagens">Viagens</label>
+                                        <input type="text" class="form-control" id="historico_viagens" name="historico_viagens" value="@if(isset($animal)){{$animal->historico_viagens}}@else{{old('historico_viagens')}}@endif">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -189,14 +189,21 @@ if (isset($animal)) {
                                     <label for="proprietario">Proprietário</label>
                                     <select class="form-control" id="proprietario" name="proprietario">
                                         <option value='' disabled>Selecione</option>
-                                        <option value="Sem proprietário" @if(isset($animal)) @if($animal->proprietario_id == NULL) selected @endif @endif>Sem proprietário</option>
+                                        <option value='' @if(isset($animal)) @if($animal->proprietario_id == NULL) selected @endif @endif>Sem proprietário</option>
+                                        @foreach($listaProprietarios as $proprietario)
+                                        <option value="{{$proprietario->id}}" @if(isset($proprietario)) @if(isset($animal) && $animal->proprietario_id == $proprietario->id) selected @endif @endif >{{$proprietario->nome}} ({{$proprietario->cpf}}) - Cód: {{$proprietario->id}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="residencia">Residência</label>
                                     <select class="form-control" id="residencia" name="residencia">
                                         <option value='' disabled>Selecione</option>
                                         <option value="Sem domicílio" @if(isset($animal)) @if($animal->residencia_id == NULL) selected @endif @endif>Sem domicílio</option>
+                                        @foreach($listaResidencias as $residencia)
+                                        <option value="{{$residencia->id}}" @if(isset($residencia)) @if(isset($animal) && $animal->residencia_id == $residencia->id) selected @endif @endif >{{$residencia->bairro}} - {{$residencia->logradouro}}, {{$residencia->numero}} - {{$residencia->complemento}} - Cód: {{$residencia->id}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group row">

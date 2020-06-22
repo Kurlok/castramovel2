@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(UserTableSeeder::class);
         $this->call(ProprietarioSeeder::class);
+        $this->call(ResidenciaSeeder::class);
+
     }
 }

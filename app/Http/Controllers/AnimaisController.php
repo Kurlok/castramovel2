@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal;
+use App\Proprietario;
+use App\Residencia;
 
 class AnimaisController extends Controller
 {
@@ -28,11 +30,19 @@ class AnimaisController extends Controller
     public function getAnimal(int $id)
     {
         $animal = Animal::find($id);
+        $listaResidencias = Residencia::all()
+        ->sortBy('bairro')
+        ->sortBy('logradouro')
+        ->sortBy('numero');
+        $listaProprietarios = Proprietario::all()
+        ->sortBy('nome');
 
         return view(
             'animais/cadastro',
             [
                 'animal' => $animal,
+                'listaResidencias' => $listaResidencias,
+                'listaProprietarios' => $listaProprietarios,
             ]
         );
     }
@@ -81,13 +91,60 @@ class AnimaisController extends Controller
             'animais/visualizacao',
             [
                 'animal' => $animal,
+
             ]
         );
     }
 
+    public function cadastrarAnimal(Request $request)
+    {
+        $validatedData = $request->validate([
+            'nome' => 'required|string|max:255',
+            'especie' => 'required',
+            'genero' => 'required',
+            'data_nascimento' => 'required',
+        ]);
+
+        $animal = new Animal();
+        $animal->nome = $request->nome;
+        $animal->especie = $request->especie;
+        $animal->genero = $request->genero;
+        $animal->data_nascimento = $request->data_nascimento;
+        $animal->cidade_natal = $request->cidade_natal;
+        $animal->historico_viagens = $request->historico_viagens;
+        $animal->outras_informacoes = $request->outras_informacoes;
+        $animal->proprietario_id = $request->proprietario;
+        $animal->residencia_id = $request->residencia;
+
+    //    print_r ($request->proprietario);
+    //    print_r ($request->residencia);
+        $animal->save();
+
+       return redirect()->route('animais')
+        ->with('mensagemAlteracaoDados', 'Dados alterados com sucesso!');
+
+        // return view(
+        //     'animais/cadastro',
+        //     ['animal' => $animal]
+        // );
+    }
+
     public function telaCadastroAnimal()
     {
+        $listaResidencias = Residencia::all()
+        ->sortBy('complemento')
+        ->sortBy('numero')
+        ->sortBy('logradouro')
+        ->sortBy('bairro');
+        $listaProprietarios = Proprietario::all()
+        ->sortBy('nome');
+
         return view(
-            'animais/cadastro'
+            'animais/cadastro',
+            [
+                'listaResidencias' => $listaResidencias,
+                'listaProprietarios' => $listaProprietarios,
+            ]
         );
-    }}
+    }
+}
