@@ -33,8 +33,8 @@
                         <th>Nome</th>
                         <th>Espécie</th>
                         <th>Gênero</th>
-                        <th>Residência</th>
                         <th>Proprietário</th>
+                        <th>Residência</th>
                         <th class="actions">Ações</th>
                     </tr>
                 </thead>
@@ -46,16 +46,17 @@
                         <td>{{$animal->nome}}</td>
                         <td>{{$animal->especie}}</td>
                         <td>{{$animal->genero}}</td>
+                        <td>{{ !empty($animal->proprietario) ? $animal->proprietario->nome:'Sem proprietário'}}</td>
+                        <td>
+                        {{ !empty($animal->residencia) ? $animal->residencia->logradouro . ', ' .$animal->residencia->numero . ' ' .$animal->residencia->complemento :'Sem Domicílio'}}
+                        </td>
 
 
                         <td class="actions">
-
                             <a class="btn btn-success btn-xs" href="{{ route('animalId', $animal->id) }}"><i class="far fa-eye"></i> Visualizar</a>
-
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExclusaoAnimal{{$animal->id}}">
                                 <i class="fas fa-trash"></i> Excluir
                             </button>
-
                             <div class="modal fade" id="modalExclusaoAnimal{{$animal->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -66,7 +67,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Confirma a exclusão de {{$animal->name}} (código: {{$animal->id}})??
+                                            Confirma a exclusão de {{$animal->nome}} (código: {{$animal->id}})??
                                         </div>
                                         
                                         <div class="modal-footer">

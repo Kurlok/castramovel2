@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Animal;
 use App\Proprietario;
 use App\Residencia;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class AnimaisController extends Controller
 {
@@ -57,15 +60,34 @@ class AnimaisController extends Controller
         $date = str_replace('/', '-', $dataBr);
         $dataSql = date("Y-m-d", strtotime($date));
 
+
+        // $animalQB = DB::table('animais')
+        //     ->join('proprietarios', 'animais.proprietario_id', '=', 'proprietario.id')
+        //     ->join('residencias', 'animais.residencia_id', '=', 'residencia.id')
+        //     ->where('genero', 'LIKE', '%' . $q . '%')
+        //     ->get();
+
         //Busca
         if ($q != "") {
-            $listaAnimais = Animal::where('nome', 'LIKE', '%' . $q . '%')
-                ->orWhere('data_nascimento', 'LIKE', '%' . $dataSql . '%')
-                ->orWhere('sus', 'LIKE', '%' . $q . '%')
-                ->orWhere('cpf', 'LIKE', '%' . $q . '%')
-                ->orWhere('telefone', 'LIKE', '%' . $q . '%')
-                ->orWhere('telefone_alternativo', 'LIKE', '%' . $q . '%')
-                ->paginate(15)->setPath('/animais/busca');
+            $listaAnimais = Animal::whereHas('proprietario', function (Builder $query) {
+                $query->where('nome', 'like', $q);
+            })
+            // ->orWhereHas('residencia', function (Builder $query) {
+            //     $query->where('logradouro', 'like', $q);
+            // })
+            // ->orWhere('nome', 'LIKE', '%' . $q . '%')
+            //     ->orWhere('data_nascimento', 'LIKE', '%' . $dataSql . '%')
+            //     ->orWhere('genero', 'LIKE', '%' . $q . '%')
+            //     ->orWhere('especie', 'LIKE', '%' . $q . '%')
+           ->paginate(15)->setPath('/animais/busca');
+
+        //     $listaAnimais = DB::table('animais')
+        //    ->join('proprietarios', 'animais.proprietario_id', '=', 'proprietarios.id')
+        //   ->join('residencias', 'animais.residencia_id', '=', 'residencias.id')
+        //     ->where('genero', 'LIKE', '%' . $q . '%')
+        //     ->paginate(15)->setPath('/animais/busca');
+        //    print_r($listaAnimais);
+
             $pagination = $listaAnimais->appends(array(
                 'q' => $q
             ));
@@ -80,7 +102,7 @@ class AnimaisController extends Controller
             return redirect()->route('animais');
         }
 
-        return view('animais/animais')->withMessage('No Details found. Try to search again !');
+        // return view('animais/animais')->withMessage('No Details found. Try to search again !');
     }
 
     public function visualizarAnimal(int $id)
@@ -116,8 +138,6 @@ class AnimaisController extends Controller
         $animal->proprietario_id = $request->proprietario;
         $animal->residencia_id = $request->residencia;
 
-    //    print_r ($request->proprietario);
-    //    print_r ($request->residencia);
         $animal->save();
 
        return redirect()->route('animais')
@@ -127,6 +147,43 @@ class AnimaisController extends Controller
         //     'animais/cadastro',
         //     ['animal' => $animal]
         // );
+    }
+
+    public function alterarAnimal(Request $request, int $id)
+    {
+        try {
+
+            $validatedData = $request->validate([
+                'nome' => 'required|string|max:255',
+                'especie' => 'required',
+                'genero' => 'required',
+                'data_nascimento' => 'required',
+            ]);
+            
+            $animal = Animal::find($id);
+            $animal->nome = $request->nome;
+            $animal->especie = $request->especie;
+            $animal->genero = $request->genero;
+            $animal->data_nascimento = $request->data_nascimento;
+            $animal->cidade_natal = $request->cidade_natal;
+            $animal->historico_viagens = $request->historico_viagens;
+            $animal->outras_informacoes = $request->outras_informacoes;
+            $animal->proprietario_id = $request->proprietario;
+            $animal->residencia_id = $request->residencia;
+
+            $animal->save();
+            return back()->with('mensagemSucesso', "Alteração realizada com sucesso.");
+        } catch (Exception $ex) {
+            return back()->with('mensagemErro', "Ocorreu um erro (" + $ex + ").");
+        }
+    }
+
+    public function deletarAnimal(int $id)
+    {
+        $animal = Animal::find($id);
+        $animal->delete();
+
+        return redirect()->route('animais');
     }
 
     public function telaCadastroAnimal()

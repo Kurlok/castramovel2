@@ -161,7 +161,7 @@ if (isset($animal)) {
                                                 <label class="form-check-label" for="macho">Macho</label>
                                             </div>
                                             <div class="form-check-inline">
-                                                <input class="form-check-input" type="radio" name="genero" id="femea" value="Fêmea" @if(isset($animal)) @if($animal->genero ==='Femea') checked @endif @elseif(old('genero')=='Fêmea') checked @endif>
+                                                <input class="form-check-input" type="radio" name="genero" id="femea" value="Fêmea" @if(isset($animal)) @if($animal->genero ==='Fêmea') checked @endif @elseif(old('genero')=='Fêmea') checked @endif>
                                                 <label class="form-check-label" for="femea">Fêmea</label>
                                             </div>
                                         </div>
@@ -200,7 +200,7 @@ if (isset($animal)) {
                                     <label for="residencia">Residência</label>
                                     <select class="form-control" id="residencia" name="residencia">
                                         <option value='' disabled>Selecione</option>
-                                        <option value="Sem domicílio" @if(isset($animal)) @if($animal->residencia_id == NULL) selected @endif @endif>Sem domicílio</option>
+                                        <option value='' @if(isset($animal)) @if($animal->residencia_id == NULL) selected @endif @endif>Sem domicílio</option>
                                         @foreach($listaResidencias as $residencia)
                                         <option value="{{$residencia->id}}" @if(isset($residencia)) @if(isset($animal) && $animal->residencia_id == $residencia->id) selected @endif @endif >{{$residencia->bairro}} - {{$residencia->logradouro}}, {{$residencia->numero}} - {{$residencia->complemento}} - Cód: {{$residencia->id}}</option>
                                         @endforeach
