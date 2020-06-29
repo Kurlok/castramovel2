@@ -132,9 +132,9 @@ if (isset($proprietario)) {
                                     <input type="text" class="form-control" name="idade" id="idade" value="@if(isset($proprietario)){{Carbon\Carbon::createFromDate($proprietario->data_nascimento)->diff(Carbon\Carbon::now())->format('%yA %mM %dD')}}@endif" disabled>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="nome">Nome completo</label>
-                                    <input type="text" class="form-control @error('nome') is-invalid @enderror" maxlength="255" name="nome" id="nome" placeholder="Nome completo" value="@if(isset($proprietario)){{$proprietario->nome}}@else{{old('nome')}}@endif">
-                                    @error('nome')
+                                    <label for="nome_completo">Nome completo</label>
+                                    <input type="text" class="form-control @error('nome_completo') is-invalid @enderror" maxlength="255" name="nome_completo" id="nome_completo" placeholder="Nome completo" value="@if(isset($proprietario)){{$proprietario->nome_completo}}@else{{old('nome_completo')}}@endif">
+                                    @error('nome_completo')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -159,7 +159,7 @@ if (isset($proprietario)) {
                                     <input type="text" class="form-control tel" id="telefone" name="telefone" maxlength="20" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone}}@else{{old('telefone')}}@endif">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="nome">Telefone Alternativo</label>
+                                    <label for="telefone_alternativo">Telefone Alternativo</label>
                                     <input type="text" class="form-control tel" id="telefone_alternativo" maxlength="20" name="telefone_alternativo" placeholder="(00) 00000-0000" value="@if(isset($proprietario)){{$proprietario->telefone_alternativo}}@else{{old('telefone_alternativo')}}@endif">
                                 </div>
                             </div>

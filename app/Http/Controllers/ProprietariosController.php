@@ -53,7 +53,7 @@ class ProprietariosController extends Controller
 
         //Busca
         if ($q != "") {
-            $listaProprietarios = Proprietario::where('nome', 'LIKE', '%' . $q . '%')
+            $listaProprietarios = Proprietario::where('nome_completo', 'LIKE', '%' . $q . '%')
                 ->orWhere('data_nascimento', 'LIKE', '%' . $dataSql . '%')
                 ->orWhere('sus', 'LIKE', '%' . $q . '%')
                 ->orWhere('cpf', 'LIKE', '%' . $q . '%')
@@ -99,7 +99,7 @@ class ProprietariosController extends Controller
     public function cadastrarProprietario(Request $request)
     {
         $validatedData = $request->validate([
-            'nome' => ['required', 'string', 'max:255'],
+            'nome_completo' => ['required', 'string', 'max:255'],
             'cpf' => 'required|string|min:14|max:14|unique:proprietarios',
         ]);
 
@@ -109,7 +109,7 @@ class ProprietariosController extends Controller
 
 
         $proprietario = new Proprietario();
-        $proprietario->nome = $request->nome;
+        $proprietario->nome_completo = $request->nome_completo;
         $proprietario->data_nascimento = $request->data_nascimento;
         $proprietario->cpf = $request->cpf;
         $proprietario->sus = $request->sus;
@@ -131,7 +131,7 @@ class ProprietariosController extends Controller
             else  $programa_renda = 0;
 
             $proprietario = Proprietario::find($id);
-            $proprietario->nome = $request->nome;
+            $proprietario->nome_completo = $request->nome_completo;
             $proprietario->cpf = $request->cpf;
             $proprietario->data_nascimento = $request->data_nascimento;
             $proprietario->sus = $request->sus;
