@@ -30,34 +30,32 @@
                 <thead>
                     <tr>
                         <th>Código</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>Data de Nascimento</th>
-                        <th>Telefone</th>
-                        <th>Telefone 2</th>
+                        <th>Bairro</th>
+                        <th>Logradouro</th>
+                        <th>Número</th>
+                        <th>Complemento</th>
                         <th class="actions">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($listaProprietarios))
-                    @foreach ($listaProprietarios as $proprietario)
+                    @if(isset($listaResidencias))
+                    @foreach ($listaResidencias as $residencia)
                     <tr>
-                        <td>{{$proprietario->id}}</td>
-                        <td>{{$proprietario->nome}}</td>
-                        <td>{{$proprietario->cpf}}</td>
-                        <td>{{date('d/m/Y', strtotime($proprietario->data_nascimento))}}</td>
-                        <td>{{$proprietario->telefone}}</td>
-                        <td>{{$proprietario->telefone_alternativo}}</td>
+                        <td>{{$residencia->id}}</td>
+                        <td>{{$residencia->bairro}}</td>
+                        <td>{{$residencia->logradouro}}</td>
+                        <td>{{$residencia->numero}}</td>
+                        <td>{{$residencia->complemento}}</td>
 
                         <td class="actions">
 
-                            <a class="btn btn-success btn-xs" href="{{ route('proprietarioId', $proprietario->id) }}"><i class="far fa-eye"></i> Visualizar</a>
+                            <a class="btn btn-success btn-xs" href="{{ route('residenciaId', $residencia->id) }}"><i class="far fa-eye"></i> Visualizar</a>
 
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExclusaoProprietario{{$proprietario->id}}">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExclusaoResidencia{{$residencia->id}}">
                                 <i class="fas fa-trash"></i> Excluir
                             </button>
 
-                            <div class="modal fade" id="modalExclusaoProprietario{{$proprietario->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="modalExclusaoResidencia{{$residencia->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -67,12 +65,12 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Confirma a exclusão de {{$proprietario->name}} (código: {{$proprietario->id}})??
+                                            Confirma a exclusão de {{$residencia->name}} (código: {{$residencia->id}})??
                                         </div>
                                         
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <form action="{{ route('deletarProprietario', $proprietario->id) }}" method="post">
+                                            <form action="{{ route('deletarResidencia', $residencia->id) }}" method="post">
                                                 {{csrf_field()}}
                                                 <button type="submit" class="btn btn-danger btn-xs" value="Excluir">
                                                     Excluir
@@ -91,8 +89,8 @@
 
         </div>
     </div>
-    @if(isset($listaProprietarios))
-    {{ $listaProprietarios->links() }}
+    @if(isset($listaResidencias))
+    {{ $listaResidencias->links() }}
     @endif
 </div>
 @endsection
